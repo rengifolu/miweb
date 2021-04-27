@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git') {
             steps {
-                git 'https://github.com/rengifolu/miweb.git'
+                git url: 'https://github.com/rengifolu/miweb.git'
             }
         }
             stage('install') {
