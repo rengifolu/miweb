@@ -14,17 +14,18 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'npm run-script build'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'ng run-script test'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh 'rm ../../apps/*'
+                sh 'cp ./dist/apps/* ../../apps/'
             }
         }
     }
