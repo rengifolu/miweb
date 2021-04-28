@@ -20,6 +20,11 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'ng test --watch=false'
+            } 
+            post {
+                always {
+                    junit "test-results.xml"
+                }
             }
         }
         stage('Deploy') {
