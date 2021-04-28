@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'ng test --progress = false --watch = false'
+                ng test --browsers = ChromeHeadless --watch = false
                 echo 'test'
             }
         }
