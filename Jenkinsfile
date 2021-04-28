@@ -21,11 +21,6 @@ pipeline {
             steps {
                 sh 'ng test --watch=false'
             } 
-            post {
-                always {
-                    junit '**/test-reports/*.xml'
-                }
-            }
         }
         stage('Deploy') {
             steps {
