@@ -19,7 +19,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'ng test --watch false'
+                sh 'ng test --progress false --watch false'
+                echo 'test'
             }
         }
         stage('Deploy') {
