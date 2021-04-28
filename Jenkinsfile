@@ -19,9 +19,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh '''
-                    ng test --single-run --browsers Chrome_no_sandbox
-                '''
+                sh 'ng test --watch=false'
             }
         }
         stage('Deploy') {
