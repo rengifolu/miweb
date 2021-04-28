@@ -19,8 +19,9 @@ pipeline {
         }
         stage('Test') {
             steps {
-                ng test --browsers = ChromeHeadless --watch = false
-                echo 'test'
+                sh '''
+                $(npm bin)/ng test --single-run --browsers Chrome_no_sandbox
+                ''' 
             }
         }
         stage('Deploy') {
