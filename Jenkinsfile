@@ -20,8 +20,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                $(npm bin)/ng test --browsers Chrome_no_sandbox
-                ''' 
+                    ng test --single-run --browsers Chrome_no_sandbox
+                '''
             }
         }
         stage('Deploy') {
