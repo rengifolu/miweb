@@ -2,6 +2,6 @@ def test1(){
     pwd
 }
 def test2(){
-    ifconfig
+    ls
 }
 return this
