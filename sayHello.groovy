@@ -1,7 +1,7 @@
 def test1(){
-    echo "pwd"
+    pwd
 }
 def test2(){
-    echo "ifconfig"
+    ifconfig
 }
 return this
