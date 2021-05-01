@@ -74,6 +74,6 @@ pipeline {
     }
 }
 
-void whateverFunction() {
-    sh 'ls -l /'
-}
+// void whateverFunction() {
+//     sh 'ls -l /'
+// }
