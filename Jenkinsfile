@@ -16,6 +16,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                whateverFunction()
                 sh 'npm run-script build'
             }
         }
@@ -31,4 +32,8 @@ pipeline {
             }
         }
     }
+}
+
+void whateverFunction() {
+    sh 'ls /'
 }
