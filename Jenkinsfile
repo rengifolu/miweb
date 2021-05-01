@@ -15,8 +15,9 @@ pipeline {
         }
         stage('Git') {
             steps {
-                echo 'stage git aqui'
-                git url: 'https://github.com/rengifolu/miweb.git', branch: "main"
+                checkout scm  
+    /*             echo 'stage git aqui'
+                git url: 'https://github.com/rengifolu/miweb.git', branch: "main" */
             }
         }
         stage('install') {
