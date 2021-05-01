@@ -1,7 +1,14 @@
+@Library('sayHello')_
+
 pipeline {
     agent any
     tools {nodejs "NodeJS"}
     stages {
+        stage('test') {
+            steps {
+                sayHello 'Diego'
+            }
+        }
         stage('Git') {
             steps {
                 echo 'stage git aqui'
@@ -35,5 +42,5 @@ pipeline {
 }
 
 void whateverFunction() {
-    sh 'ls /'
+    sh 'ls -l /'
 }
