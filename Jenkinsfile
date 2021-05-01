@@ -1,22 +1,17 @@
- Map modules = [:]
-
 
 def app
 
 pipeline {
     agent any
+    environment {
+        registry = "rengifolu/miweb"
+        registryCredential = 'dockerhub_id'
+        dockerImage = ''
+    }
+
     tools {nodejs "NodeJS"}
     stages {
 
-        stage('pruebas') {
-            steps {
-                script{
-                    modules.first = load "sayHello.groovy"
-                    modules.first.test1()
-                    modules.first.test2()
-                }
-            }
-        }
         
         stage('Git') {
             steps {
@@ -26,29 +21,34 @@ pipeline {
             }
         }
 
-        stage('Build image') {         
-        
-                app = docker.build("rengifolu/miweb")    
-        }   
+        stage('Building our image') {
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        } 
 
 
-        stage('Test image') {           
-                app.inside {            
-                
-                sh 'echo "Tests passed"'        
-                }    
-        }
-
-
-        stage('Push image') {
-    
-            docker.withRegistry('https://registry.hub.docker.com', 'git') {
-                app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
+        stage('Deploy our image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
             }
         }
+
+
+        stage('Cleaning up') {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
+        }
+
     
-        stage('install') {
+/*         stage('install') {
             steps {
                 echo 'stage install aqui'
                 sh 'npm install'
@@ -70,7 +70,7 @@ pipeline {
                 sh 'rm ../../apps/*'
                 sh 'cp ./dist/apps/* ../../apps/'
             }
-        }
+        } */
     }
 }
 
