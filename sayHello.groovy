@@ -1,7 +1,7 @@
 def test1(){
-    pwd
+    sh "ls"
 }
 def test2(){
-    ls
+    sh "pwd"
 }
 return this

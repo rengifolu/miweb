@@ -4,7 +4,7 @@ pipeline {
     agent any
     tools {nodejs "NodeJS"}
     stages {
-        stage('test') {
+        stage('pruebas') {
             steps {
                 script{
                     modules.first = load "sayHello.groovy"
