@@ -1,4 +1,4 @@
- 
+ Map modules = [:]
 
 pipeline {
     agent any
@@ -6,7 +6,11 @@ pipeline {
     stages {
         stage('test') {
             steps {
-                sayHello 'Diego'
+                script{
+                    modules.first = load "sayHello.groovy"
+                    modules.first.test1()
+                    modules.first.test2()
+                }
             }
         }
         stage('Git') {

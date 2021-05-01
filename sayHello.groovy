@@ -1,3 +1,7 @@
-def call(String name = 'human') {
-    echo "Hello, ${name}."
+def test1(){
+    echo "pwd"
 }
+def test2(){
+    echo "ifconfig"
+}
+return this
