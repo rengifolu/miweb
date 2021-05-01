@@ -1,10 +1,13 @@
  Map modules = [:]
 
+
+def app
+
 pipeline {
     agent any
     tools {nodejs "NodeJS"}
     stages {
-        def app
+
         stage('pruebas') {
             steps {
                 script{
