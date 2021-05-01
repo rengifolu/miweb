@@ -32,3 +32,7 @@ sudo docker build -t rengifolu/miweb:latest .
 sudo docker push rengifolu/miweb:latest
 
 docker container ls -a
+
+# este comando tambien vale para el build
+
+sudo docker build --pull --rm -f "Dockerfile" -t miweb:latest "."
