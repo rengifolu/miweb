@@ -1,4 +1,4 @@
-@Library('sayHello')_
+ 
 
 pipeline {
     agent any
