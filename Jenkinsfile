@@ -23,6 +23,7 @@ pipeline {
             steps{
                 script {
                     /* dockerImage = docker.build registry + ":$BUILD_NUMBER" */
+                    sh 'docker login'
                     dockerImage = docker.build registry + ":latest"
                 }
             }
