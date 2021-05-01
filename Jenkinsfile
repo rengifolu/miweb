@@ -4,11 +4,13 @@ pipeline {
     stages {
         stage('Git') {
             steps {
+                echo 'stage git aqui'
                 git url: 'https://github.com/rengifolu/miweb.git', branch: "main"
             }
         }
         stage('install') {
             steps {
+                echo 'stage install aqui'
                 sh 'npm install'
             }
         }
