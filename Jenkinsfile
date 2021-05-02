@@ -71,7 +71,7 @@ pipeline {
                     yamlText = yamlText.replaceAll("BUILD_NUMBER", "${BUILD_NUMBER}")
                     echo yamlText
 
-                    writeFile file "deployment.yaml", text: yamlText
+                    writeFile file: "deployment.yaml", text: yamlText
                     // kubernetesDeploy(configs: "deplooyment.yaml", kubeconfigId: "mykubeconfig")
                 }
             }
