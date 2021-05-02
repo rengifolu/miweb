@@ -63,6 +63,21 @@ pipeline {
         } 
 
 
+        stage('Deploy App') {
+            steps {
+                script {
+
+                    def yamlText = readFile "deployment.yaml"
+                    yamlText = yamlText.replaceAll("BUILD_NUMBER", "${BUILD_NUMBER}")
+                    echo yamlText
+
+                    writeFile file "deployment.yaml", text: yamlText
+                    // kubernetesDeploy(configs: "deplooyment.yaml", kubeconfigId: "mykubeconfig")
+                }
+            }
+        }
+
+
     
 /*         stage('install') {
             steps {

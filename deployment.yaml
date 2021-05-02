@@ -21,7 +21,7 @@ spec:
     spec: 
       containers: 
       - name: angular 
-        image: rengifolu/miweb:latest 
+        image: rengifolu/miweb:BUILD_NUMBER 
         ports: 
         - containerPort: 80 
 --- 
