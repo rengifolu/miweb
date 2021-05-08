@@ -3,26 +3,26 @@ kind: Namespace
 metadata:
    name: miweb-namespace
 ---
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
-kind: Deployment 
-metadata: 
-  name: miweb-deployment 
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: miweb-deployment
   namespace: miweb-namespace
-spec: 
-  selector: 
-    matchLabels: 
-      app: angular 
-  replicas: 2 # tells deployment to run 2 pods matching the template 
-  template: 
-    metadata: 
-      labels: 
-        app: angular 
-    spec: 
-      containers: 
-      - name: angular 
-        image: rengifolu/miweb:BUILD_NUMBER 
-        ports: 
-        - containerPort: 80 
+spec:
+  selector:
+    matchLabels:
+      app: angular
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: angular
+    spec:
+      containers:
+      - name: angular
+        image: rengifolu/miweb:BUILD_NUMBER
+        ports:
+        - containerPort: 80
 --- 
 # https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service  
 kind: Service 
