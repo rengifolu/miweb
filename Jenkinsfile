@@ -67,12 +67,12 @@ pipeline {
             steps {
                 script {
 
-                    def yamlText = readFile "deployment.yaml"
+                    def yamlText = readFile "deployment.yml"
                     yamlText = yamlText.replaceAll("BUILD_NUMBER", "${BUILD_NUMBER}")
                     echo yamlText
 
-                    writeFile file: "deployment.yaml", text: yamlText
-                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "mykubeconfig")
+                    writeFile file: "deployment.yml", text: yamlText
+                    kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfig")
 
                     //sh 'kubectl apply -f deployment.yaml'
                     
