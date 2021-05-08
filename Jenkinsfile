@@ -72,9 +72,9 @@ pipeline {
                     echo yamlText
 
                     writeFile file: "deployment.yaml", text: yamlText
-                    // kubernetesDeploy(configs: "deplooyment.yaml", kubeconfigId: "mykubeconfig")
+                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "mykubeconfig")
 
-                    sh 'kubectl apply -f deployment.yaml'
+                    //sh 'kubectl apply -f deployment.yaml'
                     
                 }
             }
