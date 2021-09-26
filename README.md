@@ -38,3 +38,9 @@ docker container ls -a
 sudo docker build --pull --rm -f "Dockerfile" -t rengifolu/miweb:latest "."
 
 sudo docker push rengifolu/miweb:latest
+
+
+
+# este comando tambien vale para correr docker
+
+run --name miweb -d -p 8081:80 rengifolu/miweb
