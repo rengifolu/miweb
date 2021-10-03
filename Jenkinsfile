@@ -10,60 +10,60 @@ pipeline {
     tools {nodejs "NodeJS"}
     stages {
 
-        
+
         stage('Git') {
             steps {
-                checkout scm  
+                checkout scm
     /*             echo 'stage git aqui'
                 git url: 'https://github.com/rengifolu/miweb.git', branch: "main" */
             }
         }
 
 
-        stage('Building our image') { 
+        stage('Building our image') {
 
-            steps { 
+            steps {
 
-                script { 
+                script {
 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
 
                 }
 
-            } 
+            }
 
         }
 
-        stage('Deploy our image') { 
+        stage('Deploy our image') {
 
-            steps { 
+            steps {
 
-                script { 
+                script {
 
-                    docker.withRegistry( '', registryCredential ) { 
+                    docker.withRegistry( '', registryCredential ) {
 
-                        dockerImage.push() 
+                        dockerImage.push()
 
                     }
 
-                } 
+                }
 
             }
 
-        } 
+        }
 
-        stage('Cleaning up') { 
+        stage('Cleaning up') {
 
-            steps { 
+            steps {
 
-                sh "docker rmi $registry:$BUILD_NUMBER" 
+                sh "docker rmi $registry:$BUILD_NUMBER"
 
             }
 
-        } 
+        }
 
 
-        stage('Deploy App') {
+        /*stage('Deploy App on kubernetes') {
             steps {
                 script {
 
@@ -75,13 +75,13 @@ pipeline {
                     kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfig")
 
                     //sh 'kubectl apply -f deployment.yaml'
-                    
+
                 }
             }
-        }
+        }*/
 
 
-    
+
 /*         stage('install') {
             steps {
                 echo 'stage install aqui'
@@ -97,7 +97,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'ng test --watch=false'
-            } 
+            }
         }
         stage('Deploy') {
             steps {
