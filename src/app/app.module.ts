@@ -16,6 +16,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { GridComponent } from './components/grid/grid.component'
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -39,7 +41,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AddTutorialComponent,
     TutorialDetailsComponent,
     TutorialsListComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatGridListModule,
     BrowserAnimationsModule
   ],
   providers: [ {
