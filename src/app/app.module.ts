@@ -11,7 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -34,14 +38,19 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AppComponent,
     AddTutorialComponent,
     TutorialDetailsComponent,
-    TutorialsListComponent
+    TutorialsListComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [ {
     provide: APP_INITIALIZER,
