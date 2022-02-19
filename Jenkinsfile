@@ -1,3 +1,5 @@
+
+/* groovylint-disable-next-line CompileStatic */
 pipeline {
     agent any
     environment {
@@ -13,7 +15,7 @@ pipeline {
     /*             echo 'stage git aqui'
                 git url: 'https://github.com/rengifolu/miweb.git', branch: "main" */
             }
-        }
+      }
 
       stage('Building our image') {
             steps {
@@ -21,23 +23,22 @@ pipeline {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
-        }
+      }
 
       stage('Deploy our image') {
-          steps{
+          steps {
                script {
-                    docker.withRegistry('', registryCredential) {
-                        dockerImage.push()
-                    }
-                }
+                 /* groovylint-disable-next-line NestedBlockDepth */
+                 docker.withRegistry('', registryCredential) { dockerImage.push() }
+               }
           }
-        }
+      }
 
         stage('Cleaning up') {
             steps {
                 script {
                         sh "docker rmi $registry:$BUILD_NUMBER"
-                    }
+                }
             }
         }
     }
