@@ -2,15 +2,13 @@
 pipeline {
     agent any
     environment {
-        registry = "rengifolu/miweb"
+        registry = 'rengifolu/miweb'
         registryCredential = 'dockerhub_id'
         dockerImage = ''
     }
+    tools { nodejs 'NodeJS' }
 
-    tools {nodejs "NodeJS"}
     stages {
-
-
         stage('Git') {
             steps {
                 checkout scm
@@ -19,49 +17,28 @@ pipeline {
             }
         }
 
-
         stage('Building our image') {
-
             steps {
-
                 script {
-
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
-
                 }
-
             }
-
         }
 
         stage('Deploy our image') {
-
             steps {
 
-                script {
-
-                    docker.withRegistry( '', registryCredential ) {
-
-                        dockerImage.push()
-
-                    }
-
                 }
-
             }
-
         }
 
         stage('Cleaning up') {
-
             steps {
-
-                sh "docker rmi $registry:$BUILD_NUMBER"
-
+                script {
+                        sh "docker rmi $registry:$BUILD_NUMBER"
+                    }
             }
-
         }
-
 
         /*stage('Deploy App on kubernetes') {
             steps {
@@ -80,14 +57,12 @@ pipeline {
             }
         }*/
 
-
-
 /*         stage('install') {
             steps {
                 echo 'stage install aqui'
                 sh 'npm install'
             }
-        }
+}
         stage('Build') {
             steps {
                 whateverFunction()
