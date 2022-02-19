@@ -24,11 +24,13 @@ pipeline {
         }
 
       stage('Deploy our image') {
-                script {
+          steps{
+               script {
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push()
                     }
                 }
+          }
         }
 
         stage('Cleaning up') {
