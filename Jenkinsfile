@@ -6,9 +6,8 @@ pipeline {
         dockerImage = ''
     }
     tools { nodejs 'NodeJS' }
-
     stages {
-        stage('Git') {
+      stage('Git') {
             steps {
                 checkout scm
     /*             echo 'stage git aqui'
@@ -16,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Building our image') {
+      stage('Building our image') {
             steps {
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -24,7 +23,7 @@ pipeline {
             }
         }
 
-        stage('Deploy our image') {
+      stage('Deploy our image') {
                 script {
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push()
@@ -39,22 +38,5 @@ pipeline {
                     }
             }
         }
-
-        /*stage('Deploy App on kubernetes') {
-            steps {
-                script {
-
-                    def yamlText = readFile "deployment.yml"
-                    yamlText = yamlText.replaceAll("BUILD_NUMBER", "${BUILD_NUMBER}")
-                    echo yamlText
-
-                    writeFile file: "deployment.yml", text: yamlText
-                    kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfig")
-
-                    //sh 'kubectl apply -f deployment.yaml'
-
-                }
-            }
-        }*/
     }
 }
