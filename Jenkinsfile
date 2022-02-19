@@ -27,7 +27,10 @@ pipeline {
 
         stage('Deploy our image') {
             steps {
-
+                script {
+                    docker.withRegistry('', registryCredential) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
@@ -56,6 +59,12 @@ pipeline {
                 }
             }
         }*/
+    }
+}
+
+// void whateverFunction() {
+//     sh 'ls -l /'
+// }
 
 /*         stage('install') {
             steps {
@@ -80,9 +89,3 @@ pipeline {
                 sh 'cp ./dist/apps/* ../../apps/'
             }
         } */
-    }
-}
-
-// void whateverFunction() {
-//     sh 'ls -l /'
-// }
