@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { KeycloakService } from 'keycloak-angular';
-
-
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
@@ -10,14 +7,9 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private keycloakService: KeycloakService) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-
-  logout() {
-    this.keycloakService.logout();
   }
 
 }

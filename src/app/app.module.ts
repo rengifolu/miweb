@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,31 +9,17 @@ import { TutorialsListComponent } from './components/tutorials-list/tutorials-li
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { GridComponent } from './components/grid/grid.component'
+import { MatIconModule } from '@angular/material/icon';
+import {HomeComponent} from './home/home.component';
+import {GridComponent} from './components/grid/grid.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
 
-function initializeKeycloak(keycloak: KeycloakService) {
-  return () =>
-    keycloak.init({
-      config: {
-        url: 'http://localhost:8080/auth',
-        realm: 'portal',
-        clientId: 'portal-frontend'
-      },
-      initOptions: {
-        onLoad: 'login-required',
-        silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/silent-check-sso.html'
-      }
-    });
-}
 
 @NgModule({
   declarations: [
@@ -42,6 +28,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     TutorialDetailsComponent,
     TutorialsListComponent,
     ToolbarComponent,
+    HomeComponent,
     GridComponent
   ],
   imports: [
@@ -49,19 +36,15 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    KeycloakAngularModule,
+    RouterModule,
     MatToolbarModule,
-    MatIconModule,
     MatButtonModule,
+    MatIconModule,
     MatGridListModule,
-    BrowserAnimationsModule
-  ],
-  providers: [ {
-    provide: APP_INITIALIZER,
-    useFactory: initializeKeycloak,
-    multi: true,
-    deps: [KeycloakService]
-  }],
+    BrowserAnimationsModule,
+    MatCardModule,
+    ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
