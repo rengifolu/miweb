@@ -9,7 +9,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return()  =>
     keycloak.init({
       config: {
-        url: 'http://0.0.0.0:8080/auth',
+        url: 'http://0.0.0.0:8081/auth',
         realm: 'miweb',
         clientId: 'keycloak-angular',
       },

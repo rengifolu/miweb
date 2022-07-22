@@ -40,5 +40,5 @@ sudo docker build --pull --rm -f "Dockerfile" -t rengifolu/miweb:latest "."
 sudo docker push rengifolu/miweb:latest
 
 
-# https://hub.docker.com/r/jboss/keycloak/ con esto lo creamos
-sudo docker run --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080:8080 jboss/keycloak
+# https://hub.docker.com/r/jboss/keycloak/ con esto lo creamos con -Djboss.http.port=8081 dejamos que se active con el puerto 8081
+sudo docker run --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8081:8081 jboss/keycloak -Djboss.http.port=8081
