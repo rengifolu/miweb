@@ -9,12 +9,12 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return()  =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8080/auth',
-        realm: 'master',
+        url: 'http://0.0.0.0:8080/auth',
+        realm: 'miweb',
         clientId: 'keycloak-angular',
       },
       initOptions: {
-        onLoad: 'check-sso',
+        onLoad: 'login-required',
         silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html',
       },
     });

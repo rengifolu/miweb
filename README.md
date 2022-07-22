@@ -38,3 +38,7 @@ docker container ls -a
 sudo docker build --pull --rm -f "Dockerfile" -t rengifolu/miweb:latest "."
 
 sudo docker push rengifolu/miweb:latest
+
+
+# https://hub.docker.com/r/jboss/keycloak/ con esto lo creamos
+sudo docker run --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080:8080 jboss/keycloak
